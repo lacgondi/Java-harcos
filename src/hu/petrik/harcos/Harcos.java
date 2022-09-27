@@ -50,7 +50,15 @@ public class Harcos {
     }
 
     public void setXp(int xp) {
-        this.xp = xp;
+        if(this.xp+xp>=getToNextLevel()){
+            int goesOverToNextLvl = (this.xp+xp)-getToNextLevel();
+            this.xp -= getToNextLevel();
+            level++;
+            this.xp= goesOverToNextLvl;
+            setHp(getMaxHp());
+        }else{
+            this.xp = xp;
+        }
     }
 
     public int getHp() {
@@ -58,6 +66,10 @@ public class Harcos {
     }
 
     public void setHp(int hp) {
+        if(this.hp-hp<=0){
+            this.xp = 0;
+
+        }
         this.hp = hp;
     }
 
