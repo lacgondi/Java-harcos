@@ -77,4 +77,28 @@ public class Harcos {
     public String toString() {
         return String.format("%s - LVL: %d - EXP: %d/%d - HP: %d/%d - DMG: %d",name,level,xp,getToNextLevel(),hp,getMaxHp(),getDmg());
     }
+
+    public void fight(Harcos secondFighter){
+        if(this == secondFighter){
+            System.out.println("Hiba a harcos nem harcolhat saját magával");
+        }else if(this.hp == 0 || secondFighter.hp == 0){
+            System.out.println("Az egyik harcosnak 0 életereje van");
+        }else{
+            secondFighter.setHp(secondFighter.hp-this.getDmg());
+            if(secondFighter.getHp() <= 0){
+                this.setXp(this.xp+10);
+            }else {
+                this.setXp(this.xp+5);
+                secondFighter.setXp(secondFighter.getXp()+5);
+            }
+        }
+    }
+
+    public void heal(){
+        if(hp == 0){
+            hp = getMaxHp();
+        }else{
+            setHp(3+level);
+        }
+    }
 }
