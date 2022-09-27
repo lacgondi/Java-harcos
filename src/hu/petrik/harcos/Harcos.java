@@ -25,6 +25,10 @@ public class Harcos {
                 baseHp = 8;
                 baseDmg = 5;
                 break;
+            default:
+                baseHp =1;
+                baseDmg = 1;
+                break;
         }
         this.hp = getMaxHp();
     }
