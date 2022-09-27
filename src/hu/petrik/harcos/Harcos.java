@@ -72,4 +72,9 @@ public class Harcos {
     public int getMaxHp(){
         return baseHp+level*3;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s - LVL: %d - EXP: %d/%d - HP: %d/%d - DMG: %d",name,level,xp,getToNextLevel(),hp,getMaxHp(),getDmg());
+    }
 }
