@@ -61,7 +61,9 @@ public class Main {
             if(rounds%3==0 && rounds == 0){
                 int rand = (int)(Math.random()*(hList.size()-1))+1;
                 hList.get(rand).fight(player);
-
+                for (int i = 0; i < hList.size(); i++) {
+                    hList.get(i).heal();
+                }
             }
         }
     }
