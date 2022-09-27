@@ -39,13 +39,30 @@ public class Main {
         Harcos player = new Harcos(name, template);
 
         String option = null;
+        int rounds = 0;
         while (!option.equals("q")){
+            rounds++;
             for (int i = 0; i < hList.size(); i++) {
                 System.out.println(i+1+" - "+hList.get(i).toString());
             }
             System.out.println("Válassz egy opciót\n\tCsata egy harcossal (1)\n\tGyógyulás (2)\n\tKilépés (q)");
             option=sc.nextLine().toLowerCase();
+            if(option.equals("1")){
+                int opponent;
+                do {
+                    System.out.print("Válasszon ellenfelet a fenitek közül (1-6): ");
+                    opponent = sc.nextInt()-1;
+                }while (opponent >= hList.size() || opponent < 1);
+                player.fight(hList.get(opponent));
+            }else if(option.equals("2")){
+                player.heal();
+            }
 
+            if(rounds%3==0 && rounds == 0){
+                int rand = (int)(Math.random()*(hList.size()-1))+1;
+                hList.get(rand).fight(player);
+
+            }
         }
     }
 }
