@@ -68,9 +68,11 @@ public class Harcos {
     public void setHp(int hp) {
         if(this.hp-hp<=0){
             this.xp = 0;
-
+            this.hp = hp;
         }
-        this.hp = hp;
+        if(hp>getMaxHp()){
+            this.hp = getMaxHp();
+        }
     }
 
     public int getDmg(){
