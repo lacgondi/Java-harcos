@@ -26,7 +26,7 @@ public class Harcos {
                 baseDmg = 5;
                 break;
             default:
-                baseHp =1;
+                baseHp = 1;
                 baseDmg = 1;
                 break;
         }
