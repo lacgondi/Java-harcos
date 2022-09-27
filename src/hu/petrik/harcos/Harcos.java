@@ -12,7 +12,7 @@ public class Harcos {
         this.name = name;
         this.level = 1;
         this.xp = 0;
-        switch (statusTemplate){
+        switch (statusTemplate) {
             case 1:
                 baseHp = 15;
                 baseDmg = 3;
@@ -50,13 +50,13 @@ public class Harcos {
     }
 
     public void setXp(int xp) {
-        if(this.xp+xp>=getToNextLevel()){
-            int goesOverToNextLvl = (this.xp+xp)-getToNextLevel();
+        if (this.xp + xp >= getToNextLevel()) {
+            int goesOverToNextLvl = (this.xp + xp) - getToNextLevel();
             this.xp -= getToNextLevel();
             level++;
-            this.xp= goesOverToNextLvl;
+            this.xp = goesOverToNextLvl;
             setHp(getMaxHp());
-        }else{
+        } else {
             this.xp = xp;
         }
     }
@@ -66,53 +66,53 @@ public class Harcos {
     }
 
     public void setHp(int hp) {
-        if(this.hp-hp<=0){
+        if (this.hp - hp <= 0) {
             this.xp = 0;
             this.hp = hp;
         }
-        if(hp>getMaxHp()){
+        if (hp > getMaxHp()) {
             this.hp = getMaxHp();
         }
     }
 
-    public int getDmg(){
+    public int getDmg() {
         return baseDmg + level;
     }
 
-    public int getToNextLevel(){
-        return 10+level*5;
+    public int getToNextLevel() {
+        return 10 + level * 5;
     }
 
-    public int getMaxHp(){
-        return baseHp+level*3;
+    public int getMaxHp() {
+        return baseHp + level * 3;
     }
 
     @Override
     public String toString() {
-        return String.format("%s - LVL: %d - EXP: %d/%d - HP: %d/%d - DMG: %d",name,level,xp,getToNextLevel(),hp,getMaxHp(),getDmg());
+        return String.format("%s - LVL: %d - EXP: %d/%d - HP: %d/%d - DMG: %d", name, level, xp, getToNextLevel(), hp, getMaxHp(), getDmg());
     }
 
-    public void fight(Harcos secondFighter){
-        if(this == secondFighter){
+    public void fight(Harcos secondFighter) {
+        if (this == secondFighter) {
             System.out.println("Hiba a harcos nem harcolhat saját magával");
-        }else if(this.hp == 0 || secondFighter.hp == 0){
+        } else if (this.hp == 0 || secondFighter.hp == 0) {
             System.out.println("Az egyik harcosnak 0 életereje van");
-        }else{
-            secondFighter.setHp(secondFighter.hp-this.getDmg());
-            if(secondFighter.getHp() <= 0){
-                this.setXp(this.xp+10);
-            }else {
-                this.setXp(this.xp+5);
-                secondFighter.setXp(secondFighter.getXp()+5);
+        } else {
+            secondFighter.setHp(secondFighter.hp - this.getDmg());
+            if (secondFighter.getHp() <= 0) {
+                this.setXp(this.xp + 10);
+            } else {
+                this.setXp(this.xp + 5);
+                secondFighter.setXp(secondFighter.getXp() + 5);
             }
         }
     }
 
-    public void heal(){
-        if(hp == 0){
+    public void heal() {
+        if (hp == 0) {
             hp = getMaxHp();
-        }else{
-            setHp(3+level);
+        } else {
+            setHp(3 + level);
         }
     }
 }
