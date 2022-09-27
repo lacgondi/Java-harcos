@@ -33,12 +33,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("Adja meg a karaktere nevét: ");
         String name = sc.nextLine();
-        System.out.print("Adja meg melyik karakter sablont szeretné használni(1)");
+        System.out.print("Adja meg melyik karakter sablont szeretné használni(1-3): ");
         int template = sc.nextInt();
 
         Harcos player = new Harcos(name, template);
 
-        String option = null;
+        String option = "w";
         int rounds = 0;
         while (!option.equals("q")){
             rounds++;
